@@ -1,0 +1,25 @@
+<nav class="card-body">
+  <ul class="pagination justify-content-center">
+    <li class="page-item">
+      {% if pagination.href.previous %}<a
+        href="{{ pagination.href.previous }}"
+        class="page-link"
+        >&laquo;</a
+      >{% endif %}
+    </li>
+    {%- for page in pagination.pages -%}
+    <li {% if pagination.pageNumber + 1 == loop.index %} class="page-item active" {% else %} class="page-item" {% endif %}>
+      <a href="{{ pagination.hrefs[loop.index0] }}" class="page-link">{{
+        loop.index
+      }}</a>
+    </li>
+    {% endfor %}
+    <li class="page-item">
+      {% if pagination.href.next %}<a
+        href="{{ pagination.href.next }}"
+        class="page-link"
+        >&raquo;</a
+      >{% endif %}
+    </li>
+  </ul>
+</nav>

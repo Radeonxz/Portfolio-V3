@@ -1,0 +1,25 @@
+{
+  "name": "Portfolio-V3",
+  "version": "1.0.0",
+  "description": "JAMStack version",
+  "main": "index.js",
+  "scripts": {
+    "start": "eleventy --serve",
+    "build": "eleventy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Radeonxz/Portfolio-V3.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Radeonxz/Portfolio-V3/issues"
+  },
+  "homepage": "https://github.com/Radeonxz/Portfolio-V3#readme",
+  "devDependencies": {
+    "@11ty/eleventy": "^1.0.0",
+    "eleventy-plugin-i18n": "^0.1.3"
+  }
+}

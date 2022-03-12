@@ -1,0 +1,70 @@
+{% set pageUrl = page.url.split('/').slice(2).join('/') %}
+
+<header class="card container-fluid w-75 mb-5">
+  <div class="container-fluid w-75" id="menu-canvas">
+    <div class="justify-content-center">
+      <!-- <img src="/assets/banner.png" class="img-fluid" /> -->
+      <canvas />
+      <form onsubmit="init(event)">
+        <input
+          type="text"
+          id="textInput"
+          maxlength="90"
+          placeholder="Random text"
+        />
+      </form>
+    </div>
+  </div>
+  <nav class="navbar navbar-expand-lg navbar-transparent">
+    <ul class="nav container-fluid w-50 justify-content-center">
+      <li class="nav-item">
+        <a href="/" class="btn font-weight-bold">{{ "landing" | i18n }}</a>
+      </li>
+
+      <li class="nav-item">
+      <a href="/{{ locale }}/home" class="btn font-weight-bold">{{ "home" | i18n }}</a>
+        
+      </li>
+
+      <li class="nav-item">
+      <a href="/{{ locale }}/project" class="btn font-weight-bold">{{ "projects" | i18n }}</a>
+        
+      </li>
+
+      <li class="nav-item">
+      <a href="/{{ locale }}/post" class="btn font-weight-bold">{{ "posts" | i18n }}</a>
+        
+      </li>
+
+      <li class="nav-item">
+        <a
+        href="https://github.com/Radeonxz"
+        target="_blank"
+        class="btn font-weight-bold"
+        ><i class="fab fa-github"></i
+      ></a>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="btn font-weight-bold" data-toggle="dropdown" href="" role="button"><i class="fas fa-globe"></i
+          ></a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="/en/{{ pageUrl }}">English</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="/fr/{{ pageUrl }}">Français</a>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a
+        href=""
+        class="btn font-weight-bold"
+        id="theme-switch"
+        onclick="toggleTheme();"
+      ></a>
+      </li>
+    
+  
+    </ul>
+  </nav>
+</header>
