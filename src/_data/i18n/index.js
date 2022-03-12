@@ -1,8 +1,4 @@
 module.exports = {
-  hello: {
-    en: "Hello !!",
-    fr: "Bonjour !!"
-  },
   landing: {
     en: "Landing",
     fr: "Destination"
