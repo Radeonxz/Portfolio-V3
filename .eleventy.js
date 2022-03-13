@@ -4,6 +4,7 @@ const { DateTime } = require("luxon");
 const translations = require("./src/_data/i18n");
 
 module.exports = function (eleventyConfig) {
+  // All posts with translations
   eleventyConfig.addCollection("posts_en", function (collection) {
     return collection.getFilteredByGlob("./src/en/post/*.md");
   });
@@ -12,6 +13,7 @@ module.exports = function (eleventyConfig) {
     return collection.getFilteredByGlob("./src/fr/post/*.md");
   });
 
+  // Featured posts with translations
   eleventyConfig.addCollection("posts_en_featured", function (collection) {
     return collection
       .getFilteredByGlob("./src/en/post/*.md")

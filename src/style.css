@@ -36,8 +36,25 @@ p {
 .btn.font-weight-bold:focus-within {
   border: 1px solid transparent;
   border-radius: 0.5rem;
-  border-color: var(--bs-info);
+  border-color: var(--bs-primary);
+  color: var(--bs-primary);
 }
+
+/* Article List Card */
+#article-list-card .card-title {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+#article-list-card .card-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Pagination */
 
 .pagination .page-link {
   background-color: var(--bs-info);

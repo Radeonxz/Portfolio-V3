@@ -1,5 +1,5 @@
 <div class="col-4">
-  <div class="card">
+  <div class="card" id="article-list-card">
     <article class="card-body">
       <img
         src="{{ post.data.image }}"
@@ -7,11 +7,9 @@
         class="img-fluid"
       />
       <h5 class="card-title d-block text-truncate pt-2">
-        <!-- <a href="{{ post.url }}">{{ post.data.title }}</a> -->
         {{ post.data.title }}
       </h5>
       <p class="snippet__meta">
-        <!-- by <span>{{ post.data.author }}</span> on -->
         <span>{{ post.date | postDate }}</span>
       </p>
       <p class="card-text">{{ post.data.description }}</p>

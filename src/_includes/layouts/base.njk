@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel='icon' href='/assets/favicon-32x32-dark.png' type='image/x-icon'/
+    >
     <link rel="stylesheet" href="/style.css" />
 
     <link
@@ -18,6 +20,7 @@
       rel="stylesheet"
     />
     <link id="light-theme-style" rel="stylesheet" />
+    <link id="light-favicon" rel="icon" type="image/x-icon" />
     <title>{{ title }}</title>
   </head>
   <body>
@@ -49,14 +52,16 @@
         localStorage.getItem(LOCAL_STORAGE_LOCALE_KEY)
       );
 
-      //
+      // Get locale from url
       const urlLocale = window.location.pathname.split("/")[1];
       console.log("urlLocale: ", urlLocale);
 
-      // Bootstrap dark theme url
+      // Bootstrap light theme url
       const LIGHT_THEME_PATH =
         "https://bootswatch.com/5/quartz/bootstrap.min.css";
-      const DARK_STYLE_LINK = document.getElementById("light-theme-style");
+      const LIGHT_FAVICON_PATH = "/assets/favicon-32x32-light.png";
+      const LIGHT_STYLE_LINK = document.getElementById("light-theme-style");
+      const LIGHT_FAVICON = document.getElementById("light-favicon");
       const THEME_SWITCH = document.getElementById("theme-switch");
       let isLight = LOCAL_META_DATA_THEME && LOCAL_META_DATA_THEME.isLight;
       // check if user has already selected light theme earlier
@@ -65,10 +70,7 @@
       } else {
         disableLightTheme();
       }
-      /*** Apart from toggling themes, this will also store user's theme preference in local storage.
-       * So when user visits next time, we can load the same theme.
-       *
-       */
+
       function toggleTheme() {
         isLight = !isLight;
         if (isLight) {
@@ -81,13 +83,15 @@
       }
       function enableLightTheme() {
         document.documentElement.className = "light-theme";
-        DARK_STYLE_LINK.setAttribute("href", LIGHT_THEME_PATH);
-        THEME_SWITCH.innerHTML = "🌙";
+        LIGHT_STYLE_LINK.setAttribute("href", LIGHT_THEME_PATH);
+        LIGHT_FAVICON.setAttribute("href", LIGHT_FAVICON_PATH);
+        THEME_SWITCH.innerHTML = '<i class="far fa-moon"></i>'; // 🌙
       }
       function disableLightTheme() {
         document.documentElement.className = "dark-theme";
-        DARK_STYLE_LINK.setAttribute("href", "");
-        THEME_SWITCH.innerHTML = "🔆";
+        LIGHT_STYLE_LINK.setAttribute("href", "");
+        LIGHT_FAVICON.setAttribute("href", "");
+        THEME_SWITCH.innerHTML = '<i class="far fa-sun"></i>'; // 🔆
       }
 
       // Menu logo script
@@ -153,7 +157,7 @@
         let startY = parentEle.offsetHeight / 2;
         particles = [];
         targets = [];
-        // Create temp canvas for the text, draw it and get the image data.
+        // Create temp canvas for the text, draw it and get the image data
         const c = document.createElement("canvas");
         const cx = c.getContext("2d");
         cx.font = `900 ${fontSize}px Arial`;
@@ -176,7 +180,6 @@
         startX = Math.floor(startX - w / 2);
         startY = Math.floor(startY - h / 2);
         cx.fillStyle = "#000";
-        // For reasons unknown to me, font needs to be set here again, otherwise font size will be wrong.
         cx.font = `900 ${fontSize}px Arial`;
         cx.fillText(text, 0, fontSize);
         const data = cx.getImageData(0, 0, w, h);
@@ -203,8 +206,8 @@
       function loop() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        // As long as there are targets, keep creating new particles.
-        // Remove target from the targets array when it's been assigned to a particle.
+        // As long as there are targets, keep creating new particles
+        // Remove target from the targets array when it's been assigned to a particle
         for (let i = 0; i < speed; i++) {
           if (targets.length > 0) {
             target = targets[0];
@@ -256,9 +259,10 @@
 
       init();
 
-      window.addEventListener("mousemove", (e) => {
-        const halfHeight = window.innerHeight / 2;
-        targetRotationY = (e.clientY - halfHeight) / window.innerHeight;
+      // Add mousemove event to canvas only
+      canvas.addEventListener("mousemove", (e) => {
+        const halfHeight = parentEle.offsetHeight / 2;
+        targetRotationY = (e.clientY - halfHeight) / parentEle.offsetHeight;
       });
     </script>
   </body>
