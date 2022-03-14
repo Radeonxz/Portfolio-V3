@@ -6,14 +6,34 @@ public_folder: "assets/posts"
 collections:
   - name: "post"
     label: "Post"
-    folder: "src/en/post"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Description", name: "description", widget: "string" }
-      - { label: "Date", name: "date", widget: "datetime" }
-      - { label: "Tags", name: "tags", widget: "list", default: ["post"] }
-      - { label: "Featured Image", name: "image", widget: "image" }
-      - { label: "Image Caption", name: "imageAlt", widget: "string" }
-      - { label: "Body", name: "body", widget: "markdown" }
+    create: false
+    - fields:
+      - { label: "Master Locale Title", name: "masterTitle", widget: "string" }
+      - name: "post_en"
+        label: "Post in English"
+        folder: "src/en/post"
+        create: true
+        slug: "{{year}}-{{month}}-{{day}}_{{masterTitle.slug}}"
+        filter: { field: "language", value: "en" }
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "string" }
+          - { label: "Date", name: "date", widget: "datetime" }
+          - { label: "Tags", name: "tags", widget: "list", default: ["post"] }
+          - { label: "Featured Image", name: "image", widget: "image" }
+          - { label: "Image Caption", name: "imageAlt", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
+      - name: "post_fr"
+        label: "Poste en Français"
+        folder: "src/fr/post"
+        create: true
+        slug: "{{year}}-{{month}}-{{day}}_{{masterTitle.slug}}"
+        filter: { field: "language", value: "fr" }
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "string" }
+          - { label: "Date", name: "date", widget: "datetime" }
+          - { label: "Tags", name: "tags", widget: "list", default: ["post"] }
+          - { label: "Featured Image", name: "image", widget: "image" }
+          - { label: "Image Caption", name: "imageAlt", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
