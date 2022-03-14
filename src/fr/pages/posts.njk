@@ -1,19 +1,19 @@
 ---
 title: Xuan.Z
 layout: layouts/base
-permalink: /{{ locale }}/post/{% if pagination.pageNumber > 0 %}page-{{ pagination.pageNumber + 1 }}/{% endif %}index.html
+permalink: /{{ locale }}/posts/{% if pagination.pageNumber > 0 %}page-{{ pagination.pageNumber + 1 }}/{% endif %}index.html
 pagination:
   data: collections.posts_fr
-  size: 3
+  size: 6
   alias: posts
   reverse: true
 ---
 
-<div class="section container">
-  <ul role="list" class="articles_list flow">
+<div class="container-fluid w-75">
+  <div class="row">
     {%- for post in posts -%} {% include 'layouts/article-snippet.njk' %} {%-
     endfor -%}
-  </ul>
+  </div>
 </div>
 
 {% include 'layouts/pagination.njk' %}

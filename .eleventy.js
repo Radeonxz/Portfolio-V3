@@ -6,27 +6,35 @@ const translations = require("./src/_data/i18n");
 module.exports = function (eleventyConfig) {
   // All posts with translations
   eleventyConfig.addCollection("posts_en", function (collection) {
-    return collection.getFilteredByGlob("./src/en/post/*.md");
+    return collection
+      .getFilteredByGlob("./src/en/*.md")
+      .filter(function (post) {
+        return post.data.isPublished === true;
+      });
   });
 
   eleventyConfig.addCollection("posts_fr", function (collection) {
-    return collection.getFilteredByGlob("./src/fr/post/*.md");
+    return collection
+      .getFilteredByGlob("./src/fr/*.md")
+      .filter(function (post) {
+        return post.data.isPublished === true;
+      });
   });
 
   // Featured posts with translations
   eleventyConfig.addCollection("posts_en_featured", function (collection) {
     return collection
-      .getFilteredByGlob("./src/en/post/*.md")
+      .getFilteredByGlob("./src/en/*.md")
       .filter(function (post) {
-        return post.data.tags.includes("featured");
+        return post.data.isFeatured === true;
       });
   });
 
   eleventyConfig.addCollection("posts_fr_featured", function (collection) {
     return collection
-      .getFilteredByGlob("./src/fr/post/*.md")
+      .getFilteredByGlob("./src/fr/*.md")
       .filter(function (post) {
-        return post.data.tags.includes("featured");
+        return post.data.isFeatured === true;
       });
   });
 
