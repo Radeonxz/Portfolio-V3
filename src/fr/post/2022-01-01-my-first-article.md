@@ -2,7 +2,7 @@
 title: First Article in French
 date: 2021-05-01
 tags: ["post", "featured"]
-image: /assets/blogs/article-1.jpg
+image: /assets/posts/article-1.jpg
 imageAlt: First article's image
 description: First article's description in French, first article's description in French, first article's description in French?
 ---

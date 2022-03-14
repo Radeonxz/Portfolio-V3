@@ -2,7 +2,7 @@
 title: Third Article in French
 date: 2021-05-28
 tags: ["post", "featured"]
-image: /assets/blogs/article-3.jpg
+image: /assets/posts/article-3.jpg
 imageAlt: Third article's image
 description: Third article's description in French, third article's description in French, third article's description in French?
 ---

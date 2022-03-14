@@ -19,6 +19,10 @@
       crossorigin="anonymous"
       rel="stylesheet"
     />
+    <script
+      defer
+      src="https://identity.netlify.com/v1/netlify-identity-widget.js"
+    ></script>
     <link id="light-theme-style" rel="stylesheet" />
     <link id="light-favicon" rel="icon" type="image/x-icon" />
     <title>{{ title }}</title>
@@ -40,6 +44,18 @@
       integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
       crossorigin="anonymous"
     ></script>
+
+    <script>
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", (user) => {
+          if (!user) {
+            window.netlifyIdentity.on("login", () => {
+              document.location.href = "/admin/";
+            });
+          }
+        });
+      }
+    </script>
 
     <!-- Custom JavaScript  -->
     <script>

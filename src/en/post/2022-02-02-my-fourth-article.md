@@ -2,7 +2,7 @@
 title: Fourth Article in English
 date: 2021-06-01
 tags: ["post"]
-image: /assets/blogs/article-4.jpg
+image: /assets/posts/article-4.jpg
 imageAlt: Fourth article's image
 description: Fourth article's description in English, fourth article's description in English, fourth article's description in English?
 ---

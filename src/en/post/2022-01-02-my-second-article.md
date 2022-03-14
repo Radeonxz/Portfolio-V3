@@ -2,7 +2,7 @@
 title: Second Article in English
 date: 2021-05-15
 tags: ["post", "featured"]
-image: /assets/blogs/article-2.jpg
+image: /assets/posts/article-2.jpg
 imageAlt: Second article's image
 description: Second article's description in English, second article's description in English, second article's description in English?
 ---

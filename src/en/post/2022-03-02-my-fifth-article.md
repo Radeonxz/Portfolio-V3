@@ -2,7 +2,7 @@
 title: Fifth Article in English with Long Title
 date: 2021-06-15
 tags: ["post"]
-image: /assets/blogs/article-5.jpg
+image: /assets/posts/article-5.jpg
 imageAlt: Fifth article's image
 description: Fifth article's description in English, fifth article's description in English, fifth article's description in English?
 ---
