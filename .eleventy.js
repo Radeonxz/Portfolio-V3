@@ -37,6 +37,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("./src/style.css");
   // eleventyConfig.addPassthroughCopy("./src/landing.css");
   eleventyConfig.addPassthroughCopy("./src/assets");
+  eleventyConfig.addPassthroughCopy("./src/admin");
 
   // Add translations
   eleventyConfig.addPlugin(i18n, {
