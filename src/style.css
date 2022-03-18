@@ -40,6 +40,16 @@ p {
   color: var(--bs-primary);
 }
 
+/* Home Skill Sets */
+#skillsets {
+  margin: 0.5rem 0;
+  padding: 0;
+}
+
+#skillsets img {
+  margin-right: 0.25rem;
+}
+
 /* Article List Card */
 #article-list-card .card-title {
   text-overflow: ellipsis;
@@ -52,6 +62,30 @@ p {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+#article-detail-content pre {
+  background-color: var(--bs-secondary);
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+#article-detail-content table {
+  width: 100%;
+}
+
+#article-detail-content table tr:nth-child(odd) td {
+  background-color: var(--bs-secondary);
+}
+
+#article-detail-content img {
+  width: 50%;
+  display: block;
+  margin: auto;
+}
+
+#article-detail-content-img {
+  width: 100% !important;
 }
 
 /* Pagination */

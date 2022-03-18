@@ -1,0 +1,37 @@
+<div class="container-fluid w-75">
+  <h1>{{ "skills" | i18n }}</h1>
+  <div class="container" id="skillsets">
+    <h5>{{ "markups" | i18n }}</h5>
+    {%- for item in collections.markups -%}
+    <img src="{{ item.imageSrc }}" />
+    {%- endfor -%}
+  </div>
+
+  <div class="container" id="skillsets">
+    <h5>{{ "languages" | i18n }}</h5>
+    {%- for item in collections.languages -%}
+    <img src="{{ item.imageSrc }}" />
+    {%- endfor -%}
+  </div>
+
+  <div class="container" id="skillsets">
+    <h5>{{ "fronts" | i18n }}</h5>
+    {%- for item in collections.fronts -%}
+    <img src="{{ item.imageSrc }}" />
+    {%- endfor -%}
+  </div>
+
+  <div class="container" id="skillsets">
+    <h5>{{ "backs" | i18n }}</h5>
+    {%- for item in collections.backs -%}
+    <img src="{{ item.imageSrc }}" />
+    {%- endfor -%}
+  </div>
+
+  <div class="container" id="skillsets">
+    <h5>{{ "miscellaneous" | i18n }}</h5>
+    {%- for item in collections.miscellaneous -%}
+    <img src="{{ item.imageSrc }}" />
+    {%- endfor -%}
+  </div>
+</div>

@@ -2,6 +2,7 @@ const i18n = require("eleventy-plugin-i18n");
 const { DateTime } = require("luxon");
 
 const translations = require("./src/_data/i18n");
+const skills = require("./src/_data/skills.json");
 
 module.exports = function (eleventyConfig) {
   // All posts with translations
@@ -38,7 +39,27 @@ module.exports = function (eleventyConfig) {
       });
   });
 
-  eleventyConfig.addCollection("currentYear", function () {
+  eleventyConfig.addCollection("markups", function () {
+    return skills.markups;
+  });
+
+  eleventyConfig.addCollection("languages", function () {
+    return skills.languages;
+  });
+
+  eleventyConfig.addCollection("fronts", function () {
+    return skills.fronts;
+  });
+
+  eleventyConfig.addCollection("backs", function () {
+    return skills.backs;
+  });
+
+  eleventyConfig.addCollection("miscellaneous", function () {
+    return skills.miscellaneous;
+  });
+
+  eleventyConfig.addCollection("current_year", function () {
     return new Date().getFullYear();
   });
 
