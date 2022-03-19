@@ -4,24 +4,4 @@ layout: layouts/base
 permalink: /{{ locale }}/home/index.html
 ---
 
-{% include 'layouts/skills.njk' %}
-
-<div id="featured-articles" class="container-fluid w-75">
-  <div class="d-flex">
-    <a href="#featured-articles" class="btn btn-outline-primary"
-      >Featured articles</a
-    >
-    <a href="/{{ locale }}/post" class="btn btn-outline-secondary"
-      >Most recent articles</a
-    >
-  </div>
-</div>
-
-<div id="featured-articles" class="container-fluid w-75">
-  <h1>Featured Posts</h1>
-
-  <div class="row">
-    {%- for post in collections.posts_en_featured | reverse -%} {% include
-    'layouts/article-snippet.njk' %} {%- endfor -%}
-  </div>
-</div>
+{% include 'layouts/skills.njk' %} {% include 'layouts/featured-article.njk' %}

@@ -38,5 +38,17 @@ module.exports = {
   miscellaneous: {
     en: "Miscellaneous",
     fr: "Divers"
+  },
+  recentPosts: {
+    en: "Most Recent Posts",
+    fr: "Postes Les Plus Récents"
+  },
+  featuredPosts: {
+    en: "Featured Posts",
+    fr: "Postes Mis En Vedette"
+  },
+  readMore: {
+    en: "Read More",
+    fr: "En Savoir Plus"
   }
 };
