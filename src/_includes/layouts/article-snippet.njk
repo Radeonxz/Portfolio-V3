@@ -1,11 +1,13 @@
-<div class="col-4">
-  <div class="card" id="article-list-card">
-    <article class="card-body">
+<div class="col-sm-12 col-md-4" id="article-list">
+  <div class="card mt-3" id="article-list-card">
+    <div class="card-img">
       <img
         src="{{ post.data.image }}"
         alt="{{ post.data.imageAlt }}"
         class="img-fluid"
       />
+    </div>
+    <article class="card-body">
       <h5 class="card-title d-block text-truncate pt-2">
         {{ post.data.title }}
       </h5>

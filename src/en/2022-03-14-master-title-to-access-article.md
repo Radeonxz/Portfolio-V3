@@ -7,7 +7,7 @@ isMachineTranslated: false
 title: First Title in English
 description: Desc in English
 date: 2022-03-15T06:16:32.741Z
-image: /assets/posts/article-1.jpg
+image: /assets/content/article-1.jpg
 imageAlt: img desc
 ---
 

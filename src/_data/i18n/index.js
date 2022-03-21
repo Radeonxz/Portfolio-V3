@@ -50,5 +50,37 @@ module.exports = {
   readMore: {
     en: "Read More",
     fr: "En Savoir Plus"
+  },
+  visitGithub: {
+    en: "Visit Repo",
+    fr: ""
+  },
+  visitSite: {
+    en: "Visit Site",
+    fr: ""
+  },
+  alertCard: {
+    en: "This card is machine translated :)",
+    fr: "Cette carte est traduite en machine :)"
+  },
+  toastHomeLocale: {
+    en: "Toggle 🌐 to switch language",
+    fr: "Basculer 🌐 pour changer de langue"
+  },
+  toastHomeTheme: {
+    en: "Toggle 🔆 | 🌙 to switch theme",
+    fr: "Basculer 🔆 | 🌙 pour changer de thème"
+  },
+  toastHomeInfoDesc: {
+    en: "You know you can",
+    fr: "Vous savez que vous pouvez"
+  },
+  toastArticle: {
+    en: "This article is machine translated :)",
+    fr: "Cet article est traduit automatiquement :)"
+  },
+  toastArticleWarningDesc: {
+    en: "Read with caution",
+    fr: "A lire avec précaution"
   }
 };

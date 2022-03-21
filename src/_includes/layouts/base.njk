@@ -6,13 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel='icon' href='/assets/favicon-32x32-dark.png' type='image/x-icon'/
     >
-    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="/styles/main.css" />
 
     <link
       rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
-      integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
       crossorigin="anonymous"
+      referrerpolicy="no-referrer"
     />
     <link
       href="https://bootswatch.com/5/darkly/bootstrap.min.css"
@@ -44,6 +45,16 @@
       integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
       crossorigin="anonymous"
     ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+      integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+      integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+      crossorigin="anonymous"
+    ></script>
 
     <script>
       if (window.netlifyIdentity) {
@@ -59,27 +70,26 @@
 
     <!-- Custom JavaScript  -->
     <script>
-      const LOCAL_STORAGE_THEME_KEY = "app-theme";
-      const LOCAL_STORAGE_LOCALE_KEY = "app-locale";
-      const LOCAL_META_DATA_THEME = JSON.parse(
+      var LOCAL_STORAGE_THEME_KEY = "app-theme";
+      var LOCAL_STORAGE_LOCALE_KEY = "app-locale";
+      var LOCAL_META_DATA_THEME = JSON.parse(
         localStorage.getItem(LOCAL_STORAGE_THEME_KEY)
       );
-      const LOCAL_META_DATA_LOCALE = JSON.parse(
+      var LOCAL_META_DATA_LOCALE = JSON.parse(
         localStorage.getItem(LOCAL_STORAGE_LOCALE_KEY)
       );
 
       // Get locale from url
-      const urlLocale = window.location.pathname.split("/")[1];
-      console.log("urlLocale: ", urlLocale);
+      var urlLocale = window.location.pathname.split("/")[1];
 
       // Bootstrap light theme url
-      const LIGHT_THEME_PATH =
-        "https://bootswatch.com/5/quartz/bootstrap.min.css";
-      const LIGHT_FAVICON_PATH = "/assets/favicon-32x32-light.png";
-      const LIGHT_STYLE_LINK = document.getElementById("light-theme-style");
-      const LIGHT_FAVICON = document.getElementById("light-favicon");
-      const THEME_SWITCH = document.getElementById("theme-switch");
-      let isLight = LOCAL_META_DATA_THEME && LOCAL_META_DATA_THEME.isLight;
+      var LIGHT_THEME_PATH =
+        "https://bootswatch.com/5/flatly/bootstrap.min.css";
+      var LIGHT_FAVICON_PATH = "/assets/favicon-32x32-light.png";
+      var LIGHT_STYLE_LINK = document.getElementById("light-theme-style");
+      var LIGHT_FAVICON = document.getElementById("light-favicon");
+      var THEME_SWITCH = document.getElementById("theme-switch");
+      var isLight = LOCAL_META_DATA_THEME && LOCAL_META_DATA_THEME.isLight;
       // check if user has already selected light theme earlier
       if (isLight) {
         enableLightTheme();
@@ -94,7 +104,7 @@
         } else {
           disableLightTheme();
         }
-        const META = { isLight };
+        var META = { isLight };
         localStorage.setItem(LOCAL_STORAGE_THEME_KEY, JSON.stringify(META));
       }
       function enableLightTheme() {
@@ -111,21 +121,21 @@
       }
 
       // Menu logo script
-      const parentEle = document.getElementById("menu-canvas");
-      const canvas = document.querySelector("canvas");
-      const ctx = canvas.getContext("2d");
-      const layers = 8; // 4
-      let size = 0;
-      let particles = [];
-      let targets = [];
-      const lerp = (t, v0, v1) => (1 - t) * v0 + t * v1;
-      const fov = 2000;
-      const viewDistance = 100; // 200
-      let targetRotationY = 0.5;
-      let rotationY = 0.5;
-      let speed = 40;
-      let animFrame;
-      let textIndex = 0;
+      var parentEle = document.getElementById("menu-canvas");
+      var canvas = document.querySelector("canvas");
+      var ctx = canvas.getContext("2d");
+      var layers = 8; // 4
+      var size = 0;
+      var particles = [];
+      var targets = [];
+      var lerp = (t, v0, v1) => (1 - t) * v0 + t * v1;
+      var fov = 2000;
+      var viewDistance = 100; // 200
+      var targetRotationY = 0.5;
+      var rotationY = 0.5;
+      var speed = 40;
+      var animFrame;
+      var textIndex = 0;
 
       canvas.width = parentEle.offsetWidth;
       canvas.height = parentEle.offsetHeight;
@@ -138,48 +148,52 @@
         }
 
         static fromScreenCoords(_x, _y, _z) {
-          const factor = fov / viewDistance;
-          const x = (_x - canvas.width / 2) / factor;
-          const y = (_y - canvas.height / 2) / factor;
-          const z = _z !== undefined ? _z : 0;
+          var factor = fov / viewDistance;
+          var x = (_x - canvas.width / 2) / factor;
+          var y = (_y - canvas.height / 2) / factor;
+          var z = _z !== undefined ? _z : 0;
 
           return new Vector3(x, y, z);
         }
 
         rotateX(angle) {
-          const z = this.z * Math.cos(angle) - this.x * Math.sin(angle);
-          const x = this.z * Math.sin(angle) + this.x * Math.cos(angle);
+          var z = this.z * Math.cos(angle) - this.x * Math.sin(angle);
+          var x = this.z * Math.sin(angle) + this.x * Math.cos(angle);
           return new Vector3(x, this.y, z);
         }
         rotateY(angle) {
-          const y = this.y * Math.cos(angle) - this.z * Math.sin(angle);
-          const z = this.y * Math.sin(angle) + this.z * Math.cos(angle);
+          var y = this.y * Math.cos(angle) - this.z * Math.sin(angle);
+          var z = this.y * Math.sin(angle) + this.z * Math.cos(angle);
           return new Vector3(this.x, y, z);
         }
         pp() {
-          const factor = fov / (viewDistance + this.z);
-          const x = this.x * factor + canvas.width / 2;
-          const y = this.y * factor + canvas.height / 2;
+          var factor = fov / (viewDistance + this.z);
+          var x = this.x * factor + canvas.width / 2;
+          var y = this.y * factor + canvas.height / 2;
           return new Vector3(x, y, this.z);
         }
       }
 
-      function init(e) {
+      function animate(e) {
         if (e) e.preventDefault();
         cancelAnimationFrame(animFrame);
-        const text = "Xuan.Z";
-        let fontSize = 150;
-        let startX = parentEle.offsetWidth / 2;
-        let startY = parentEle.offsetHeight / 2;
+        var parentEle = document.getElementById("menu-canvas");
+        var canvas = document.querySelector("canvas");
+        canvas.width = parentEle.offsetWidth;
+        canvas.height = parentEle.offsetHeight;
+        var text = "Xuan.Z";
+        var startX = parentEle.offsetWidth / 2;
+        var startY = parentEle.offsetHeight / 2;
+        var fontSize = (startX * startY) / 180;
         particles = [];
         targets = [];
         // Create temp canvas for the text, draw it and get the image data
-        const c = document.createElement("canvas");
-        const cx = c.getContext("2d");
+        var c = document.createElement("canvas");
+        var cx = c.getContext("2d");
         cx.font = `900 ${fontSize}px Arial`;
-        let w = cx.measureText(text).width;
-        const h = fontSize * 1.5;
-        let gap = 7;
+        var w = cx.measureText(text).width;
+        var h = fontSize * 1.5;
+        var gap = 7;
 
         // Adjust font and particle size to fit text on screen
         while (w > window.innerWidth * 0.8) {
@@ -198,17 +212,17 @@
         cx.fillStyle = "#000";
         cx.font = `900 ${fontSize}px Arial`;
         cx.fillText(text, 0, fontSize);
-        const data = cx.getImageData(0, 0, w, h);
+        var data = cx.getImageData(0, 0, w, h);
 
         // Iterate the image data and determine target coordinates for the flying particles
-        for (let i = 0; i < data.data.length; i += 4) {
-          const rw = data.width * 4;
-          const rh = data.height * 4;
-          const x = startX + Math.floor((i % rw) / 4);
-          const y = startY + Math.floor(i / rw);
+        for (var i = 0; i < data.data.length; i += 4) {
+          var rw = data.width * 4;
+          var rh = data.height * 4;
+          var x = startX + Math.floor((i % rw) / 4);
+          var y = startY + Math.floor(i / rw);
 
           if (data.data[i + 3] > 0 && x % gap === 0 && y % gap === 0) {
-            for (let j = 0; j < layers; j++) {
+            for (var j = 0; j < layers; j++) {
               targets.push(Vector3.fromScreenCoords(x, y, j * 1));
             }
           }
@@ -224,15 +238,15 @@
 
         // As long as there are targets, keep creating new particles
         // Remove target from the targets array when it's been assigned to a particle
-        for (let i = 0; i < speed; i++) {
+        for (var i = 0; i < speed; i++) {
           if (targets.length > 0) {
             target = targets[0];
             x = canvas.width / 2 + target.x * 10;
             y = canvas.height / 2;
             z = -10;
 
-            const position = Vector3.fromScreenCoords(x, y, z);
-            const interpolant = 0;
+            var position = Vector3.fromScreenCoords(x, y, z);
+            var interpolant = 0;
 
             particles.push({ position, target, interpolant });
             targets.splice(0, 1);
@@ -249,19 +263,19 @@
               p.position.y = lerp(p.interpolant, p.position.y, p.target.y);
               p.position.z = lerp(p.interpolant, p.position.z, p.target.z);
             }
-            const rotationX = Math.sin(Date.now() / 2000) * 0.8;
+            var rotationX = Math.sin(Date.now() / 2000) * 0.8;
             rotationY = lerp(0.00001, rotationY, targetRotationY);
-            const particle = p.position
+            var particle = p.position
               .rotateX(rotationX)
               .rotateY(rotationY)
               .pp();
 
-            const s = 1 - p.position.z / layers;
+            var s = 1 - p.position.z / layers;
 
-            const firstLayer = isLight
+            var firstLayer = isLight
               ? "rgb(248, 131, 121)"
               : "rgb(121, 175, 248)";
-            const childLayer = isLight
+            var childLayer = isLight
               ? `rgba(121, 175, 248, ${s})`
               : `rgba(248, 131, 121, ${s})`;
 
@@ -273,12 +287,22 @@
         animFrame = requestAnimationFrame(loop);
       }
 
-      init();
+      animate();
 
       // Add mousemove event to canvas only
       canvas.addEventListener("mousemove", (e) => {
-        const halfHeight = parentEle.offsetHeight / 2;
+        var halfHeight = parentEle.offsetHeight / 2;
         targetRotationY = (e.clientY - halfHeight) / parentEle.offsetHeight;
+      });
+
+      // Add window resize event to redraw canvas
+      window.addEventListener("resize", animate);
+
+      var toastLiveExample = document.getElementById("liveToast");
+      window.addEventListener("load", function () {
+        var toast = new bootstrap.Toast(toastLiveExample);
+
+        toast.show();
       });
     </script>
   </body>

@@ -1,0 +1,25 @@
+<div
+  class="position-fixed bottom-0 end-0 p-3"
+  style="z-index: 11"
+  id="toast-warning"
+>
+  <div
+    id="liveToast"
+    class="toast"
+    role="alert"
+    aria-live="assertive"
+    aria-atomic="true"
+    data-bs-delay="30000"
+  >
+    <div class="toast-header">
+      <i class="fas fa-radiation-alt"></i>
+      <i class="fas fa-radiation-alt"></i>
+      <i class="fas fa-radiation-alt"></i>
+      <strong class="me-auto">{{ "toastArticleWarningDesc" | i18n }}</strong>
+      <button type="button" data-bs-dismiss="toast">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="toast-body">{{ "toastArticle" | i18n }}</div>
+  </div>
+</div>

@@ -1,16 +1,18 @@
 const i18n = require("eleventy-plugin-i18n");
 const { DateTime } = require("luxon");
+const fs = require("fs");
 
 const translations = require("./src/_data/i18n");
 const skills = require("./src/_data/skills.json");
 
+const NOT_FOUND_PATH = "./src/404.html";
 module.exports = function (eleventyConfig) {
   // All posts with translations
   eleventyConfig.addCollection("posts_en", function (collection) {
     return collection
       .getFilteredByGlob("./src/en/*.md")
       .filter(function (post) {
-        return post.data.isPublished === true;
+        return post.data.isPublished;
       });
   });
 
@@ -18,7 +20,7 @@ module.exports = function (eleventyConfig) {
     return collection
       .getFilteredByGlob("./src/fr/*.md")
       .filter(function (post) {
-        return post.data.isPublished === true;
+        return post.data.isPublished;
       });
   });
 
@@ -27,7 +29,7 @@ module.exports = function (eleventyConfig) {
     return collection
       .getFilteredByGlob("./src/en/*.md")
       .filter(function (post) {
-        return post.data.isFeatured === true;
+        return post.data.isPublished && post.data.isFeatured;
       });
   });
 
@@ -35,9 +37,20 @@ module.exports = function (eleventyConfig) {
     return collection
       .getFilteredByGlob("./src/fr/*.md")
       .filter(function (post) {
-        return post.data.isFeatured === true;
+        return post.data.isPublished && post.data.isFeatured;
       });
   });
+
+  // All projects with translations
+  eleventyConfig.addCollection(
+    "projects_en",
+    require("./src/_11ty/collections/projects/projects_en.js")
+  );
+
+  eleventyConfig.addCollection(
+    "projects_fr",
+    require("./src/_11ty/collections/projects/projects_fr.js")
+  );
 
   eleventyConfig.addCollection("markups", function () {
     return skills.markups;
@@ -63,7 +76,7 @@ module.exports = function (eleventyConfig) {
     return new Date().getFullYear();
   });
 
-  eleventyConfig.addPassthroughCopy("./src/style.css");
+  eleventyConfig.addPassthroughCopy("./src/styles");
   eleventyConfig.addPassthroughCopy("./src/assets");
   eleventyConfig.addPassthroughCopy("./src/admin");
 
@@ -77,6 +90,27 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addFilter("postDate", (date) => {
     return DateTime.fromJSDate(date).toLocaleString(DateTime.DATE_MD);
+  });
+
+  eleventyConfig.setBrowserSyncConfig({
+    callbacks: {
+      ready: function (err, bs) {
+        bs.addMiddleware("*", (req, res) => {
+          if (!fs.existsSync(NOT_FOUND_PATH)) {
+            throw new Error(
+              `Expected a \`${NOT_FOUND_PATH}\` file but could not find one. Did you create a 404.html template?`
+            );
+          }
+
+          const content_404 = fs.readFileSync(NOT_FOUND_PATH);
+          // Add 404 http status code in request header.
+          res.writeHead(404, { "Content-Type": "text/html; charset=UTF-8" });
+          // Provides the 404 content without redirect.
+          res.write(content_404);
+          res.end();
+        });
+      }
+    }
   });
 
   return {

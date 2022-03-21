@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Xuan.Z</title>
+    <link rel="stylesheet" href="/styles/landing.css" />
+
+    <link
+      href="https://bootswatch.com/5/darkly/bootstrap.min.css"
+      crossorigin="anonymous"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="home">
+      <div id="display">
+        <div id="msg">Landing page found</div>
+        <div id="error">
+          <div id="f1">4</div>
+          <div id="circle">
+            <div id="smalldot"></div>
+          </div>
+          <div id="f2">4</div>
+        </div>
+
+        <div id="info">I bet you are looking for<br />the Home page.</div>
+
+        <div id="btn"><a href="/en/home">Home</a></div>
+      </div>
+
+      <div id="ring"></div>
+
+      <div class="dusk" id="d1"></div>
+      <div class="dusk" id="d2"></div>
+      <div class="dusk" id="d3"></div>
+      <div class="dusk" id="d4"></div>
+      <div class="dusk" id="d5"></div>
+      <div class="dusk" id="d6"></div>
+      <div class="dusk" id="d7"></div>
+      <div class="dusk" id="d8"></div>
+      <div class="dusk" id="d9"></div>
+
+      <canvas id="space_box"></canvas>
+    </div>
+
+    <script type="text/javascript">
+      var canvas = document.getElementById("space_box");
+      var c = canvas.getContext("2d");
+      var innerWidth = window.innerWidth,
+        innerHeight = window.innerHeight,
+        radius = 1,
+        starsIndex = 0,
+        stars = [],
+        TWO_PI = Math.PI * 2,
+        centerX = innerWidth / 2,
+        centerY = innerHeight / 2,
+        focalLength = 100,
+        starRadius = null,
+        starX = null,
+        starY = null,
+        numStars = 500,
+        mouse = {},
+        starX_dir = 0,
+        starY_dir = 0,
+        smallCircleX = innerWidth / 2,
+        smallCircleY = innerHeight / 2;
+      canvas.width = innerWidth;
+      canvas.height = innerHeight;
+      var grd = c.createRadialGradient(
+        smallCircleX,
+        smallCircleY,
+        1,
+        smallCircleX,
+        smallCircleY,
+        1100
+      );
+      grd.addColorStop(0, "#158AB2");
+      grd.addColorStop(0.2, "#1F2A77");
+      grd.addColorStop(0.35, "#111742");
+      grd.addColorStop(0.8, "#0D071A");
+      grd.addColorStop(1, "#000");
+
+      function onWindowResize(e) {
+        e.preventDefault();
+        window.location.reload();
+      }
+
+      // Function for create new start
+      function star(x, y, z) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.radius = radius;
+        this.color = "#FF7F50";
+        starsIndex++;
+        stars[starsIndex] = this;
+        this.id = starsIndex;
+        // Animate Stars
+        this.update = function () {
+          starX = (this.x - centerX) * (focalLength / this.z);
+          starX += centerX;
+          starY = (this.y - centerY) * (focalLength / this.z);
+          starY += centerY;
+          starRadius = radius * (focalLength / this.z);
+          starX += starX_dir;
+          starY += starY_dir;
+          this.z += -1;
+          if (this.z <= 0) {
+            this.z = parseInt(innerWidth);
+          }
+          this.draw();
+        };
+        // Function for draw star
+        this.draw = function () {
+          c.beginPath();
+          c.arc(starX, starY, starRadius, TWO_PI, false);
+          c.fillStyle = this.color;
+          c.fill();
+          c.closePath();
+        };
+      }
+      // X,Y,Z values
+      var s;
+      for (s = 0; s < numStars; s++) {
+        x = Math.random() * innerWidth;
+        y = Math.random() * innerHeight;
+        z = Math.random() * innerWidth;
+        new star(x, y, z);
+      }
+      // Function for animate canvas objects
+      function animate() {
+        requestAnimationFrame(animate);
+        c.fillStyle = grd;
+        c.fillRect(0, 0, innerWidth, innerHeight);
+        for (var i in stars) {
+          stars[i].update();
+        }
+      }
+      animate();
+
+      // Zoom in/out into the Space on mouse scroll
+      canvas.addEventListener(
+        "mousewheel",
+        function (e) {
+          if (e.deltaY < 0) {
+            focalLength *= 1.1;
+          } else {
+            focalLength /= 1.1;
+          }
+          if (focalLength >= innerWidth) {
+            focalLength = innerWidth - 20;
+          } else if (focalLength < 100) {
+            focalLength = 100;
+          }
+        },
+        false
+      );
+
+      // Add window resize event to redraw canvas
+      window.addEventListener("resize", onWindowResize);
+    </script>
+  </body>
+</html>

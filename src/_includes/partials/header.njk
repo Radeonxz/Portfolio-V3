@@ -1,8 +1,8 @@
 {% set pageUrl = page.url.split('/').slice(2).join('/') %}
 
 <header class="card container-fluid w-75 mb-5">
-  <div class="container-fluid w-75" id="menu-canvas">
-    <div class="justify-content-center">
+  <div class="container-fluid w-75" >
+    <div class="justify-content-center" id="menu-canvas">
       <canvas />
       <form onsubmit="init(event)">
         <input
@@ -26,7 +26,7 @@
       </li>
 
       <li class="nav-item">
-      <a href="/{{ locale }}/project" class="btn font-weight-bold">{{ "projects" | i18n }}</a>
+      <a href="/{{ locale }}/projects" class="btn font-weight-bold">{{ "projects" | i18n }}</a>
         
       </li>
 
