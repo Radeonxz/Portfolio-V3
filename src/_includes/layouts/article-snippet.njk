@@ -7,11 +7,13 @@
         class="img-fluid"
       />
     </div>
+
+    <!-- <div class="card-body-wrapper"> -->
     <article class="card-body">
       <h5 class="card-title d-block text-truncate pt-2">
         {{ post.data.title }}
       </h5>
-      <p class="snippet__meta">
+      <p class="card-date">
         <span>{{ post.date | postDate }}</span>
       </p>
       <p class="card-text">{{ post.data.description }}</p>
@@ -19,5 +21,6 @@
         "readMore" | i18n
       }}</a>
     </article>
+    <!-- </div> -->
   </div>
 </div>

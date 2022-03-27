@@ -5,9 +5,9 @@ isPublished: true
 isFeatured: true
 isMachineTranslated: false
 title: First Title in English
-description: Desc in English
+description: Desc in English Desc in English Desc in English Desc in English Desc in English Desc in English Desc in English
 date: 2022-03-15T06:16:32.741Z
-image: /assets/content/article-1.jpg
+image: /assets/content/git-default.png
 imageAlt: img desc
 ---
 

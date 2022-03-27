@@ -97,7 +97,7 @@ collections:
           name: "isPublished",
           widget: "boolean",
           default: true,
-          i18n: duplicate,
+          i18n: true,
           hint: "Toggle to publish or unpublish post"
         }
       - {
