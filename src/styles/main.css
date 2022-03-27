@@ -48,11 +48,24 @@ p {
 
 .btn.font-weight-bold:hover,
 .btn.font-weight-bold:focus,
-.btn.font-weight-bold:focus-within {
-  border: 1px solid transparent;
-  border-radius: 0.5rem;
-  border-color: var(--bs-primary);
-  color: var(--bs-primary);
+.btn.font-weight-bold:focus-within,
+.btn.font-weight-bold.nav-link.active::before {
+  /* border-bottom: 1px solid transparent !important; */
+  /* border-radius: 0.5rem; */
+}
+
+.dark-theme .btn.font-weight-bold:hover,
+.dark-theme .btn.font-weight-bold:focus,
+.dark-theme .btn.font-weight-bold:focus-within,
+.dark-theme .btn.font-weight-bold.nav-link.active {
+  color: var(--dark-bg-color);
+}
+
+.light-theme .btn.font-weight-bold:hover,
+.light-theme .btn.font-weight-bold:focus,
+.light-theme .btn.font-weight-bold:focus-within,
+.light-theme .btn.font-weight-bold.nav-link.active {
+  color: var(--light-bg-color);
 }
 
 /* Home Skill Sets */

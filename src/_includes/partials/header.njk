@@ -1,4 +1,4 @@
-{% set pageUrl = page.url.split('/').slice(2).join('/') %}
+{% set pageUrl = page.url.split('/').slice(2).join('/').replace('/', '') %}
 
 <header class="card container-fluid w-75 mb-5">
   <div class="container-fluid w-75" >
@@ -21,17 +21,17 @@
       </li>
 
       <li class="nav-item">
-      <a href="/{{ locale }}/home" class="btn font-weight-bold">{{ "home" | i18n }}</a>
+      <a href="/{{ locale }}/home" {% if pageUrl == 'home' %} class="btn font-weight-bold nav-link active" {% else %} class="btn font-weight-bold" {% endif %}>{{ "home" | i18n }}</a>
         
       </li>
 
       <li class="nav-item">
-      <a href="/{{ locale }}/projects" class="btn font-weight-bold">{{ "projects" | i18n }}</a>
+      <a href="/{{ locale }}/projects" {% if pageUrl == 'projects' %}  class="btn font-weight-bold nav-link active" {% else %}  class="btn font-weight-bold" {% endif %}>{{ "projects" | i18n }}</a>
         
       </li>
 
       <li class="nav-item">
-      <a href="/{{ locale }}/posts" class="btn font-weight-bold">{{ "posts" | i18n }}</a>
+      <a href="/{{ locale }}/posts" {% if pageUrl == 'posts' %}  class="btn font-weight-bold nav-link active" {% else %}   class="btn font-weight-bold"  {% endif %}>{{ "posts" | i18n }}</a>
         
       </li>
 
