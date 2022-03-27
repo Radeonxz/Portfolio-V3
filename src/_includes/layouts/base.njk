@@ -133,7 +133,7 @@
       var viewDistance = 100; // 200
       var targetRotationY = 0.5;
       var rotationY = 0.5;
-      var speed = 40;
+      var speed = 180;
       var animFrame;
       var textIndex = 0;
 
@@ -184,7 +184,7 @@
         var text = "Xuan.Z";
         var startX = parentEle.offsetWidth / 2;
         var startY = parentEle.offsetHeight / 2;
-        var fontSize = (startX * startY) / 180;
+        var fontSize = (startX * startY) / ((speed / 2) * 3);
         particles = [];
         targets = [];
         // Create temp canvas for the text, draw it and get the image data

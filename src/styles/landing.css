@@ -102,7 +102,7 @@
   border-left: 1px solid transparent;
   border-radius: 50%;
   position: absolute;
-  top: 45%;
+  top: 44%;
   left: 50%;
   transform: translate(-50%, -50%) rotateZ(45deg);
 }
@@ -158,4 +158,16 @@
   top: 44%;
   left: 61%;
   -webkit-filter: blur(1px);
+}
+
+@media only screen and (max-width: 1920px) {
+  #ring {
+    top: 42%;
+  }
+}
+
+@media only screen and (max-width: 1500px) {
+  #ring {
+    top: 45.5%;
+  }
 }

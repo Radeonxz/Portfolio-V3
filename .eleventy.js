@@ -1,4 +1,6 @@
 const i18n = require("eleventy-plugin-i18n");
+const markdownIt = require("markdown-it");
+const markdownItAnchor = require("markdown-it-anchor");
 const { DateTime } = require("luxon");
 const fs = require("fs");
 
@@ -87,6 +89,23 @@ module.exports = function (eleventyConfig) {
       fr: "en"
     }
   });
+
+  // Options for the `markdown-it` library
+  const markdownItOptions = {
+    html: true
+  };
+
+  // Options for the `markdown-it-anchor` library
+  const markdownItAnchorOptions = {
+    permalink: true
+  };
+
+  const markdownLib = markdownIt(markdownItOptions).use(
+    markdownItAnchor,
+    markdownItAnchorOptions
+  );
+
+  eleventyConfig.setLibrary("md", markdownLib);
 
   eleventyConfig.addFilter("postDate", (date) => {
     return DateTime.fromJSDate(date).toLocaleString(DateTime.DATE_MD);
