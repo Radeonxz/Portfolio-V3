@@ -1,0 +1,40 @@
+<div class="card mb-3" id="project-card">
+  <div class="card-img">
+    <img src="{{ project.data.image }}" alt="{{ project.data.imageAlt }}" />
+  </div>
+  <div class="card-body">
+    <div class="p-3" id="card-body-container">
+      {% if project.data.isMachineTranslated %}
+      <div class="alert alert-dark alert-dismissible fade show" id="alert-card">
+        {{"alertCard" | i18n}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      </div>
+      {% endif %}
+      <h4>{{ project.data.title }}</h4>
+      <p>
+        {{ project.data.description }}
+      </p>
+      <div>
+        {% if project.data.gitLink %}
+        <a
+          href="{{ project.data.gitLink }}"
+          target="_blank"
+          class="btn font-weight-bold"
+          data-bs-toggle="tooltip"
+          title={{ "visitGithub" | i18n }}
+          ><i class="fab fa-github"></i
+        ></a>
+        {% endif %} {% if project.data.siteLink %}
+        <a
+          href="{{ project.data.siteLink }}"
+          target="_blank"
+          class="btn font-weight-bold"
+          data-bs-toggle="tooltip"
+          title={{ "visitSite" | i18n }}
+          ><i class="fas fa-external-link-alt"></i
+        ></a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>

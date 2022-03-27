@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="{{ locale }}" class="dark-theme">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel='icon' href='/assets/favicon-32x32-dark.png' type='image/x-icon'/
+    >
+    <link rel="stylesheet" href="/styles/main.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      href="https://bootswatch.com/5/darkly/bootstrap.min.css"
+      crossorigin="anonymous"
+      rel="stylesheet"
+    />
+    <script
+      defer
+      src="https://identity.netlify.com/v1/netlify-identity-widget.js"
+    ></script>
+    <link id="light-theme-style" rel="stylesheet" />
+    <link id="light-favicon" rel="icon" type="image/x-icon" />
+    <title>{{ title }}</title>
+  </head>
+  <body>
+    {% include 'partials/header.njk' %}
+    <main>
+      {{ content | safe }}
+    </main>
+    {% include 'partials/footer.njk' %}
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+      integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+      integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", (user) => {
+          if (!user) {
+            window.netlifyIdentity.on("login", () => {
+              document.location.href = "/admin/";
+            });
+          }
+        });
+      }
+    </script>
+
+    <!-- Custom JavaScript  -->
+    <script>
+      var LOCAL_STORAGE_THEME_KEY = "app-theme";
+      var LOCAL_STORAGE_LOCALE_KEY = "app-locale";
+      var LOCAL_META_DATA_THEME = JSON.parse(
+        localStorage.getItem(LOCAL_STORAGE_THEME_KEY)
+      );
+      var LOCAL_META_DATA_LOCALE = JSON.parse(
+        localStorage.getItem(LOCAL_STORAGE_LOCALE_KEY)
+      );
+
+      // Get locale from url
+      var urlLocale = window.location.pathname.split("/")[1];
+
+      // Bootstrap light theme url
+      var LIGHT_THEME_PATH =
+        "https://bootswatch.com/5/flatly/bootstrap.min.css";
+      var LIGHT_FAVICON_PATH = "/assets/favicon-32x32-light.png";
+      var LIGHT_STYLE_LINK = document.getElementById("light-theme-style");
+      var LIGHT_FAVICON = document.getElementById("light-favicon");
+      var THEME_SWITCH = document.getElementById("theme-switch");
+      var isLight = LOCAL_META_DATA_THEME && LOCAL_META_DATA_THEME.isLight;
+      // check if user has already selected light theme earlier
+      if (isLight) {
+        enableLightTheme();
+      } else {
+        disableLightTheme();
+      }
+
+      function toggleTheme() {
+        isLight = !isLight;
+        if (isLight) {
+          enableLightTheme();
+        } else {
+          disableLightTheme();
+        }
+        var META = { isLight };
+        localStorage.setItem(LOCAL_STORAGE_THEME_KEY, JSON.stringify(META));
+      }
+      function enableLightTheme() {
+        document.documentElement.className = "light-theme";
+        LIGHT_STYLE_LINK.setAttribute("href", LIGHT_THEME_PATH);
+        LIGHT_FAVICON.setAttribute("href", LIGHT_FAVICON_PATH);
+        THEME_SWITCH.innerHTML = '<i class="far fa-moon"></i>'; // 🌙
+      }
+      function disableLightTheme() {
+        document.documentElement.className = "dark-theme";
+        LIGHT_STYLE_LINK.setAttribute("href", "");
+        LIGHT_FAVICON.setAttribute("href", "");
+        THEME_SWITCH.innerHTML = '<i class="far fa-sun"></i>'; // 🔆
+      }
+
+      // Menu logo script
+      var parentEle = document.getElementById("menu-canvas");
+      var canvas = document.querySelector("canvas");
+      var ctx = canvas.getContext("2d");
+      var layers = 8; // 4
+      var size = 0;
+      var particles = [];
+      var targets = [];
+      var lerp = (t, v0, v1) => (1 - t) * v0 + t * v1;
+      var fov = 2000;
+      var viewDistance = 100; // 200
+      var targetRotationY = 0.5;
+      var rotationY = 0.5;
+      var speed = 40;
+      var animFrame;
+      var textIndex = 0;
+
+      canvas.width = parentEle.offsetWidth;
+      canvas.height = parentEle.offsetHeight;
+
+      class Vector3 {
+        constructor(x, y, z) {
+          this.x = x;
+          this.y = y;
+          this.z = z;
+        }
+
+        static fromScreenCoords(_x, _y, _z) {
+          var factor = fov / viewDistance;
+          var x = (_x - canvas.width / 2) / factor;
+          var y = (_y - canvas.height / 2) / factor;
+          var z = _z !== undefined ? _z : 0;
+
+          return new Vector3(x, y, z);
+        }
+
+        rotateX(angle) {
+          var z = this.z * Math.cos(angle) - this.x * Math.sin(angle);
+          var x = this.z * Math.sin(angle) + this.x * Math.cos(angle);
+          return new Vector3(x, this.y, z);
+        }
+        rotateY(angle) {
+          var y = this.y * Math.cos(angle) - this.z * Math.sin(angle);
+          var z = this.y * Math.sin(angle) + this.z * Math.cos(angle);
+          return new Vector3(this.x, y, z);
+        }
+        pp() {
+          var factor = fov / (viewDistance + this.z);
+          var x = this.x * factor + canvas.width / 2;
+          var y = this.y * factor + canvas.height / 2;
+          return new Vector3(x, y, this.z);
+        }
+      }
+
+      function animate(e) {
+        if (e) e.preventDefault();
+        cancelAnimationFrame(animFrame);
+        var parentEle = document.getElementById("menu-canvas");
+        var canvas = document.querySelector("canvas");
+        canvas.width = parentEle.offsetWidth;
+        canvas.height = parentEle.offsetHeight;
+        var text = "Xuan.Z";
+        var startX = parentEle.offsetWidth / 2;
+        var startY = parentEle.offsetHeight / 2;
+        var fontSize = (startX * startY) / 180;
+        particles = [];
+        targets = [];
+        // Create temp canvas for the text, draw it and get the image data
+        var c = document.createElement("canvas");
+        var cx = c.getContext("2d");
+        cx.font = `900 ${fontSize}px Arial`;
+        var w = cx.measureText(text).width;
+        var h = fontSize * 1.5;
+        var gap = 7;
+
+        // Adjust font and particle size to fit text on screen
+        while (w > window.innerWidth * 0.8) {
+          fontSize -= 1;
+          cx.font = `900 ${fontSize}px Arial`;
+          w = cx.measureText(text).width;
+        }
+        if (fontSize < 100) gap = 6;
+        if (fontSize < 70) gap = 4;
+        if (fontSize < 40) gap = 2;
+        size = Math.max(gap / 2, 1);
+        c.width = w;
+        c.height = h;
+        startX = Math.floor(startX - w / 2);
+        startY = Math.floor(startY - h / 2);
+        cx.fillStyle = "#000";
+        cx.font = `900 ${fontSize}px Arial`;
+        cx.fillText(text, 0, fontSize);
+        var data = cx.getImageData(0, 0, w, h);
+
+        // Iterate the image data and determine target coordinates for the flying particles
+        for (var i = 0; i < data.data.length; i += 4) {
+          var rw = data.width * 4;
+          var rh = data.height * 4;
+          var x = startX + Math.floor((i % rw) / 4);
+          var y = startY + Math.floor(i / rw);
+
+          if (data.data[i + 3] > 0 && x % gap === 0 && y % gap === 0) {
+            for (var j = 0; j < layers; j++) {
+              targets.push(Vector3.fromScreenCoords(x, y, j * 1));
+            }
+          }
+        }
+
+        targets = targets.sort((a, b) => a.x - b.x);
+        loop();
+        return false;
+      }
+
+      function loop() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // As long as there are targets, keep creating new particles
+        // Remove target from the targets array when it's been assigned to a particle
+        for (var i = 0; i < speed; i++) {
+          if (targets.length > 0) {
+            target = targets[0];
+            x = canvas.width / 2 + target.x * 10;
+            y = canvas.height / 2;
+            z = -10;
+
+            var position = Vector3.fromScreenCoords(x, y, z);
+            var interpolant = 0;
+
+            particles.push({ position, target, interpolant });
+            targets.splice(0, 1);
+          }
+        }
+
+        particles
+          .sort((pa, pb) => pb.target.z - pa.target.z)
+          .forEach((p, i) => {
+            if (p.interpolant < 1) {
+              p.interpolant = Math.min(p.interpolant + 0.01, 1);
+
+              p.position.x = lerp(p.interpolant, p.position.x, p.target.x);
+              p.position.y = lerp(p.interpolant, p.position.y, p.target.y);
+              p.position.z = lerp(p.interpolant, p.position.z, p.target.z);
+            }
+            var rotationX = Math.sin(Date.now() / 2000) * 0.8;
+            rotationY = lerp(0.00001, rotationY, targetRotationY);
+            var particle = p.position
+              .rotateX(rotationX)
+              .rotateY(rotationY)
+              .pp();
+
+            var s = 1 - p.position.z / layers;
+
+            var firstLayer = isLight
+              ? "rgb(248, 131, 121)"
+              : "rgb(121, 175, 248)";
+            var childLayer = isLight
+              ? `rgba(121, 175, 248, ${s})`
+              : `rgba(248, 131, 121, ${s})`;
+
+            ctx.fillStyle = p.target.z === 0 ? firstLayer : childLayer;
+
+            ctx.fillRect(particle.x, particle.y, s * size, s * size);
+          });
+
+        animFrame = requestAnimationFrame(loop);
+      }
+
+      animate();
+
+      // Add mousemove event to canvas only
+      canvas.addEventListener("mousemove", (e) => {
+        var halfHeight = parentEle.offsetHeight / 2;
+        targetRotationY = (e.clientY - halfHeight) / parentEle.offsetHeight;
+      });
+
+      // Add window resize event to redraw canvas
+      window.addEventListener("resize", animate);
+
+      var toastLiveExample = document.getElementById("liveToast");
+      window.addEventListener("load", function () {
+        var toast = new bootstrap.Toast(toastLiveExample);
+
+        toast.show();
+      });
+    </script>
+  </body>
+</html>

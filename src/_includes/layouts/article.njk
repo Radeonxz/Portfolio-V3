@@ -1,0 +1,24 @@
+---
+layout: "layouts/base.njk"
+---
+
+<div class="container-fluid w-75">
+  <div id="article-detail-img">
+    <img
+      class="img-fluid rounded"
+      id="article-detail-content-img"
+      src="{{ image }}"
+      alt="{{ imageAlt }}"
+    />
+    <h1 class="article-title">{{ title }}</h1>
+  </div>
+  <article class="card p-3">
+    <div class="container-fluid" id="article-detail-content">
+      <div id="article-detail-body">
+        {{ content | safe }}
+      </div>
+    </div>
+  </article>
+
+  {% include 'partials/toast-warning.njk' %}
+</div>

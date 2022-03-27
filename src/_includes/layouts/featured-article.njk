@@ -1,0 +1,19 @@
+<!-- <div id="featured-articles" class="container-fluid w-75">
+  <div class="d-flex">
+    <a href="#featured-articles" class="btn btn-outline-primary">{{
+      "recentPosts" | i18n
+    }}</a>
+    <a href="/{{ locale }}/post" class="btn btn-outline-secondary">{{
+      "featuredPosts" | i18n
+    }}</a>
+  </div>
+</div> -->
+
+<div id="featured-articles" class="container-fluid w-75 mt-5">
+  <h3>{{ "featuredPosts" | i18n }}</h3>
+
+  <div class="row">
+    {%- for post in collections.posts_en_featured | reverse -%} {% include
+    'layouts/article-snippet.njk' %} {%- endfor -%}
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<div class="col-sm-12 col-md-4" id="article-list">
+  <div class="card mt-3" id="article-list-card">
+    <div class="card-img">
+      <img
+        src="{{ post.data.image }}"
+        alt="{{ post.data.imageAlt }}"
+        class="img-fluid"
+      />
+    </div>
+
+    <!-- <div class="card-body-wrapper"> -->
+    <article class="card-body">
+      <h5 class="card-title d-block text-truncate pt-2">
+        {{ post.data.title }}
+      </h5>
+      <p class="card-date">
+        <span>{{ post.date | postDate }}</span>
+      </p>
+      <p class="card-text">{{ post.data.description }}</p>
+      <a href="{{ post.url }}" class="btn btn-outline-info">{{
+        "readMore" | i18n
+      }}</a>
+    </article>
+    <!-- </div> -->
+  </div>
+</div>
