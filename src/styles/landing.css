@@ -171,3 +171,9 @@
     top: 45.5%;
   }
 }
+
+@media only screen and (max-width: 1300px) {
+  #ring {
+    top: 39%;
+  }
+}
