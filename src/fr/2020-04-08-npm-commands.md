@@ -4,7 +4,7 @@ masterTitle: NPM Commands
 isPublished: true
 isFeatured: false
 isMachineTranslated: true
-title: NPM Commands
+title: Commandes NPM
 description: Commandes NPM utiles pour faciliter le développement.
 date: 2020-04-08T06:16:32.741Z
 image: /assets/content/npm.png

@@ -4,7 +4,7 @@ masterTitle: Git Commands
 isPublished: true
 isFeatured: false
 isMachineTranslated: true
-title: Git Commands
+title: Commandes Git
 description: Commandes Git utiles pour faciliter le développement.
 date: 2020-10-03T06:16:32.741Z
 image: /assets/content/git-default.png
@@ -38,13 +38,13 @@ git push --set-upstream origin feature/new-local-branch
 #### ajouter et livrer en une seule fois
 
 ```
-git commit -a -m 'chore : ...'
+git commit -a -m 'tâche: ...'
 ```
 
 #### ajouter, commiter et pousser en une seule fois
 
 ```
-git commit -am 'tâche : ...' && git push
+git commit -am 'tâche: ...' && git push
 ```
 
 #### mettre en amont la branche locale
@@ -112,7 +112,7 @@ git stash drop
 
 #### git rebase
 
-Options de rebasement :
+Options de rebasement:
 
 - pick
 - réparer

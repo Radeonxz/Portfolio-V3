@@ -125,6 +125,14 @@ p {
   left: 10%;
 }
 
+.dark-theme #project-card:nth-child(even) .card-img img {
+  box-shadow: var(--light-article-img-box-shadow);
+}
+
+.light-theme #project-card:nth-child(even) .card-img img {
+  box-shadow: var(--dark-article-img-box-shadow);
+}
+
 #project-card:last-child {
   margin-bottom: 0 !important;
 }
