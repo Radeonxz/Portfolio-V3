@@ -4,7 +4,7 @@ layout: layouts/base
 permalink: /{{ locale }}/projects/index.html
 ---
 
-<div class="container-fluid w-75">
+<div class="container-fluid w-50" id="projects-card-container">
   <ul class="list-group mx-auto w-75">
     {%- for project in collections.projects_en -%} {% include
     'layouts/project-card.njk' %} {%- endfor -%}

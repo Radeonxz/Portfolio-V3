@@ -48,11 +48,24 @@ p {
 
 .btn.font-weight-bold:hover,
 .btn.font-weight-bold:focus,
-.btn.font-weight-bold:focus-within {
-  border: 1px solid transparent;
-  border-radius: 0.5rem;
-  border-color: var(--bs-primary);
-  color: var(--bs-primary);
+.btn.font-weight-bold:focus-within,
+.btn.font-weight-bold.nav-link.active::before {
+  /* border-bottom: 1px solid transparent !important; */
+  /* border-radius: 0.5rem; */
+}
+
+.dark-theme .btn.font-weight-bold:hover,
+.dark-theme .btn.font-weight-bold:focus,
+.dark-theme .btn.font-weight-bold:focus-within,
+.dark-theme .btn.font-weight-bold.nav-link.active {
+  color: var(--dark-bg-color);
+}
+
+.light-theme .btn.font-weight-bold:hover,
+.light-theme .btn.font-weight-bold:focus,
+.light-theme .btn.font-weight-bold:focus-within,
+.light-theme .btn.font-weight-bold.nav-link.active {
+  color: var(--light-bg-color);
 }
 
 /* Home Skill Sets */
@@ -83,10 +96,13 @@ p {
 }
 
 #project-card .card-img img {
+  width: 100vw;
+  height: 24vh;
   border-radius: 2%;
   position: relative;
   left: -10%;
   top: -4%;
+  object-fit: cover;
 }
 
 .dark-theme #project-card .card-img img {
@@ -107,6 +123,14 @@ p {
 
 #project-card:nth-child(even) .card-img img {
   left: 10%;
+}
+
+.dark-theme #project-card:nth-child(even) .card-img img {
+  box-shadow: var(--light-article-img-box-shadow);
+}
+
+.light-theme #project-card:nth-child(even) .card-img img {
+  box-shadow: var(--dark-article-img-box-shadow);
 }
 
 #project-card:last-child {
@@ -270,6 +294,8 @@ p {
 
 #article-detail-content-img {
   width: 100% !important;
+  height: 40vh;
+  object-fit: cover;
 }
 
 /* Alert */
@@ -357,5 +383,51 @@ p {
 @media only screen and (max-width: 800px) {
   #project-card {
     flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: 1500px) {
+  #nav-header-container,
+  #skills-card-container,
+  #featured-articles-card-container,
+  #projects-card-container,
+  #articles-card-container,
+  #article-detail-card-container {
+    width: 75% !important;
+  }
+
+  #featured-articles-card-container #article-list-card .card-img img,
+  #articles-card-container #article-list-card .card-img img {
+    height: 8vh;
+  }
+
+  #projects-card-container #project-card .card-img img {
+    height: 13vh;
+  }
+
+  #article-detail-content-img {
+    height: 20vh;
+  }
+}
+
+@media only screen and (max-width: 1950px) {
+  #featured-articles-card-container #article-list-card .card-img img,
+  #articles-card-container #article-list-card .card-img img {
+    height: 18vh;
+  }
+}
+
+@media only screen and (max-width: 1300px) {
+  #featured-articles-card-container #article-list-card .card-img img,
+  #articles-card-container #article-list-card .card-img img {
+    height: 22vh;
+  }
+
+  #projects-card-container #project-card .card-img img {
+    height: 32vh;
+  }
+
+  #article-detail-content-img {
+    height: 42vh;
   }
 }

@@ -1,8 +1,8 @@
 ---
 layout: layouts/article
 masterTitle: Master Title to Access Article First
-isPublished: true
-isFeatured: true
+isPublished: false
+isFeatured: false
 isMachineTranslated: false
 title: First Title in English
 description: Desc in English Desc in English Desc in English Desc in English Desc in English Desc in English Desc in English

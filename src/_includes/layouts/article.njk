@@ -2,12 +2,13 @@
 layout: "layouts/base.njk"
 ---
 
-<div class="container-fluid w-75">
+<div class="container-fluid w-50" id="article-detail-card-container">
   <div id="article-detail-img">
+    <!-- src="{{ image }}" -->
     <img
       class="img-fluid rounded"
       id="article-detail-content-img"
-      src="{{ image }}"
+      src="/assets/content/git-default.png"
       alt="{{ imageAlt }}"
     />
     <h1 class="article-title">{{ title }}</h1>
@@ -20,5 +21,6 @@ layout: "layouts/base.njk"
     </div>
   </article>
 
-  {% include 'partials/toast-warning.njk' %}
+  {% if isMachineTranslated %} {% include 'partials/toast-warning.njk' %} {%
+  endif %}
 </div>
