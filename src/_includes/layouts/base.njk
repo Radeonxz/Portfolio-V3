@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="DNAPI_APPID" content="{{ siteConfig.DNAPI_APPID }}" />
+    <meta name="DNAPI_URI" content="{{ siteConfig.DNAPI_URI }}" />
     <link rel='icon' href='/assets/favicon-32x32-dark.png' type='image/x-icon'/
     >
     <link rel="stylesheet" href="/styles/main.css" />
@@ -36,8 +38,8 @@
     {% include 'partials/footer.njk' %}
 
     <script
-      src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      src="https://code.jquery.com/jquery-3.5.1.min.js"
+      integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
       crossorigin="anonymous"
     ></script>
     <script
@@ -80,7 +82,8 @@
       );
 
       // Get locale from url
-      var urlLocale = window.location.pathname.split("/")[1];
+      var pathname = window.location.pathname;
+      var urlLocale = pathname.split("/")[1];
 
       // Bootstrap light theme url
       var LIGHT_THEME_PATH =
@@ -303,6 +306,27 @@
         var toast = new bootstrap.Toast(toastLiveExample);
 
         toast.show();
+      });
+
+      $(document).ready(function () {
+        const DNAPI_APPID = document.querySelector(
+          'meta[name="DNAPI_APPID"]'
+        ).content;
+        const DNAPI_URI = document.querySelector(
+          'meta[name="DNAPI_URI"]'
+        ).content;
+
+        $.ajax({
+          url: DNAPI_URI,
+          type: "post",
+          dataType: "json",
+          contentType: "application/json",
+          data: JSON.stringify({
+            appId: DNAPI_APPID,
+            eventName: "link-visited",
+            path: pathname
+          })
+        });
       });
     </script>
   </body>
