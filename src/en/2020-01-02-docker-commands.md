@@ -149,3 +149,18 @@ docker network prune
 ```
 docker exec -it <container_id> bash
 ```
+
+## Docker Logs
+
+### Show logs before timestamp
+
+```
+docker logs -f <container_id> --until <1min>
+```
+
+### Extract logs to file
+
+```
+docker logs -f <container_id> --until <1min> > last_1min_logs.log
+docker logs -f <container_id> --since <1min> > last_1min_logs.log
+```
